@@ -11,7 +11,7 @@ domain-stress 是一款基于域名的压测工具，你可以使用它对某个
 
 ### 安装
 ```bash
-$ wget https://github.com/flowscolors/domain-stress/releases/tag/0.1.0
+wget https://github.com/flowscolors/domain-stress/releases/download/0.1.0/domain-stress
 ```
 
 ### 使用
@@ -91,24 +91,32 @@ $ ./domain-stress stress -d ebay.com -c 2 -n 100
 *************************  结果 end   ****************************
 ```
 
+<br> 
 POST请求  指定Header消息头 和 body 消息体
+
 ```bash
 $ ./domain-stress stress -d www.riversouth.xyz -c 10 -n 200 -p :10081/api/v1/namespaces/default/services -m POST \
     -H Authorization: Beaer eyJhbGciOiJSUzI1NiIsImtpZCI6ImFlU3h1YjEwSTZ6dThScjBOX1JHX0RFVk5EWnMwVmlSanZjdWN1NTU1MXMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi10b2tlbi12bmN3ZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjEwYWNlODM5LTg2ZjgtNGRiOC1hMWUwLTdhZTk4MmZiZDM1NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphZG1pbiJ9.qOhvRaHRiQv0ZA7axVYLWPvr7-I_hYDM5NLbl_vSimhP9GuZ1J9KoGHEvK_MG7WHfvPpJrUD_RFDTfJ2e0xi8u7eIlHP2kD1cCkn6JWgPwu1SG_NT2HcXus2mtQdlKQOXB0ZpOqmaur1DSExXiUydzNweIaitVsLYfBA8ZTb8BLweDFXgq91CusditgvgzF8105kxhN5-ILtalwxUq-gAqh3miq_O3c1M68tRUfp1uoQj-vyeqztwXTr6lrHfNCtyrvFyyMiyIiHeGZgf6gVDGsE26daq5UJTpCRy5DyiFNw70K4PD3ywMoPXNpmF3KFvcUJbfNzkxM0_zNpQ2zE6w \
     -b { "kind": "Service", "apiVersion": "v1", "metadata": { "name": "nginx", "labels": { "app": "nginx" }, "namespace": "default" }, "spec": { "selector": { "app": "nginx" }, "type": "NodePort", "ports": [ { "name": "nginx", "nodePort": 30000, "port": 80, "protocol": "TCP", "targetPort": 80 } ] } }
 ```
 
+<br> 
 超时时间  指定超时为1000ms 默认5000ms
+
 ```bash
 $ ./domain-stress stress -d ebay.com -c 3 -n 120 -t 1000
 ```
 
+<br> 
 重试次数  指定重试次数为1 默认为3 
+
 ```bash
 $ ./domain-stress stress -d ebay.com -c 3 -n 120 -r 1
 ```
 
+<br> 
 test命令 测试延迟，基于ICMP协议 由于某些火墙或主机可能会禁ping 故仅做参考
+
 ```bash
 $ ./domain-stress test --domain www.baidu.com
 Your target domian is: www.baidu.com 
